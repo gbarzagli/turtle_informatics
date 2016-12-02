@@ -25,7 +25,7 @@ public class HomeController {
 			model.addAttribute("userName", bundle.getObject("label.signin"));
 		}
 		
-		String productQuantity = (String) model.asMap().get("shoppingCart");
+		Integer productQuantity = (Integer) model.asMap().get("shoppingCart");
 		if (productQuantity == null) {
 			model.addAttribute("shoppingCart", 0);
 		}
