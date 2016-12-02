@@ -1,6 +1,7 @@
 package br.edu.turtle_informatics.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +15,13 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	@Column(length = 1000)
 	private String description;
+	
+	@Column(length = 1000)
 	private String specification;
+	
 	private Double price;
 	private String imageUrl;
 	
@@ -26,7 +32,6 @@ public class Product {
 	}
 
 	public Product(String name, String description, String specification, Category category, Double price) {
-		super();
 		this.name = name;
 		this.description = description;
 		this.specification = specification;

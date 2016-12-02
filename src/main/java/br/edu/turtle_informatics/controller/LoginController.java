@@ -9,14 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import br.edu.turtle_informatics.dao.impl.UserDAO;
 import br.edu.turtle_informatics.factory.DAOFactory;
 import br.edu.turtle_informatics.helper.EncryptHelper;
+import br.edu.turtle_informatics.model.Customer;
 import br.edu.turtle_informatics.model.User;
 
 @Controller
 @RequestMapping("/login")
+@SessionAttributes({"userName", "shoppingCart"})
 public class LoginController {
 
 	private static Log LOGGER = LogFactory.getLog(LoginController.class);
@@ -29,7 +32,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String postLoginPage(Model model, @ModelAttribute User form) {
+	public String postLoginPage(@ModelAttribute("user") User form, Model model) {
 		String result = "home/home";
 		
 		UserDAO userDAO = (UserDAO) DAOFactory.getDAO(User.class);
@@ -44,6 +47,16 @@ public class LoginController {
 			}
 		}
 		
+		String name = bundle.getString("label.signin");
+		if (user != null) {
+			if (user instanceof Customer) {
+				name = ((Customer) user).getName();
+			} else {
+				name = user.getEmail();
+			}
+		}
+		
+		model.addAttribute("userName", name);
 		return result;
 	}
 	
