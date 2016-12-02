@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes({"userName", "shoppingCart"})
+@SessionAttributes({"userName", "user", "shoppingCart"})
 public class HomeController {
 	
 	private static Log LOGGER = LogFactory.getLog(HomeController.class);

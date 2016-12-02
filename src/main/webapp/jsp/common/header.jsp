@@ -156,7 +156,7 @@
 
                 <div class="nav-left">
                     <div id="nav-logo">
-                        <a href="#" class="nav-logo-link" tabindex="6"> <img
+                        <a href="<c:url value="/" />" class="nav-logo-link" tabindex="6"> <img
                             src="<c:url value="/resources/img/Logo4.png" />"> <span
                             class="nav-logo-ext nav-sprite"></span> <span
                             class="nav-logo-locale nav-sprite"></span>
@@ -241,12 +241,11 @@
                     <div id="nav-xshop-container" class="">
                         <div id="nav-xshop">
 
-                            <a href="#" data-nav-tabindex="48" class="nav-a nav_a"
-                                id="nav-your-amazon">Acessorios</a> <a href="#" class="nav-a"
-                                tabindex="49">Celulares</a> <a href="#" class="nav-a"
-                                tabindex="50">Consoles</a> <a href="#" class="nav-a"
-                                tabindex="51">Computadores</a> <a href="#" class="nav-a"
-                                tabindex="52">Coolers</a>
+                            <a href="<c:url value="/product/category/1" />" data-nav-tabindex="48" class="nav-a nav_a"
+                                id="nav-your-amazon">Acessorios</a> 
+                                <a href="<c:url value="/product/category/2" />" class="nav-a" tabindex="49">Celulares</a> 
+                                <a href="<c:url value="/product/category/3" />" class="nav-a" tabindex="50">Consoles</a> 
+                                <a href="<c:url value="/product/category/4" />" class="nav-a" tabindex="51">Computadores</a> 
                             <script type="text/javascript">
                                 window.navmet.push({
                                     key : 'CrossShop',

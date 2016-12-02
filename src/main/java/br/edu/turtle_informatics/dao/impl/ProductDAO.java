@@ -5,6 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import br.edu.turtle_informatics.dao.AbstractDAO;
 import br.edu.turtle_informatics.factory.PersistenceFactory;
 import br.edu.turtle_informatics.model.Product;
@@ -13,6 +16,8 @@ import br.edu.turtle_informatics.model.Product;
  * DAO responsavel por persistir Produtos 
  */
 public class ProductDAO implements AbstractDAO<Product> {
+	
+	private static Log LOGGER = LogFactory.getLog(ProductDAO.class);
 
 	private EntityManager manager;
 	
@@ -43,6 +48,20 @@ public class ProductDAO implements AbstractDAO<Product> {
 		manager.getTransaction().commit();
 	}
 	
+	public Product findProductById(Long id) {
+		
+		Product product = null;
+		try {
+			Query query = manager.createQuery("from Product p where p.id = :id");
+			query.setParameter("id", id);
+			product = (Product) query.getSingleResult(); 
+		} catch (Exception e) {
+			LOGGER.debug(e.getLocalizedMessage(), e);
+		}
+		return product;
+		
+	}
+	
 	/**
 	 * Procura um produto pelo seu nome ou parte do nome
 	 * @param name
@@ -51,9 +70,15 @@ public class ProductDAO implements AbstractDAO<Product> {
 	 */
 	public List<Product> findProductsByName(String name) {
 		
-		Query query = manager.createQuery("from Product p where p.name like '%:name%'");
-		query.setParameter("name", name);
-		return query.getResultList();
+		List<Product> products = null;
+		try {
+			Query query = manager.createQuery("from Product p where p.name like '%:name%'");
+			query.setParameter("name", name);
+			products = query.getResultList();
+		} catch (Exception e) {
+			LOGGER.debug(e.getLocalizedMessage(), e);
+		}
+		return products;
 		
 	}
 	
@@ -63,10 +88,16 @@ public class ProductDAO implements AbstractDAO<Product> {
 	 * @return Lista de produtos daquela categoria
 	 */
 	public List<Product> findProductsByCategory(Long category) {
-		
-		Query query = manager.createQuery("from Product p where p.category = :category");
-		query.setParameter("category", category);
-		return query.getResultList();
+
+		List<Product> products = null;
+		try {
+			Query query = manager.createQuery("select p from Product p where p.category.id = :category");
+			query.setParameter("category", category);
+			products = query.getResultList();
+		} catch (Exception e) {
+			LOGGER.info(e.getLocalizedMessage(), e);
+		}
+		return products;
 		
 	}
 

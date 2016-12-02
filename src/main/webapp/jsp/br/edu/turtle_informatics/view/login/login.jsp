@@ -237,7 +237,7 @@ body:before {
 			<form:checkbox path="admin" class="checklog"/> I'm an Administrator!
 			<button type="submit">Login</button>
 			<p class="message">
-				Not registered? <a href="#">Create an account</a>
+				Not registered? <a href="<c:url value="/persist/register/user" />">Create an account</a>
 			</p>
 		</form:form>
 	</div>

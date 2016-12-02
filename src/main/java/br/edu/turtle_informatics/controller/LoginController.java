@@ -19,7 +19,7 @@ import br.edu.turtle_informatics.model.User;
 
 @Controller
 @RequestMapping("/login")
-@SessionAttributes({"userName", "shoppingCart"})
+@SessionAttributes({"userName", "user", "shoppingCart"})
 public class LoginController {
 
 	private static Log LOGGER = LogFactory.getLog(LoginController.class);
@@ -49,6 +49,7 @@ public class LoginController {
 		
 		String name = bundle.getString("label.signin");
 		if (user != null) {
+			model.addAttribute("user", user);
 			if (user instanceof Customer) {
 				name = ((Customer) user).getName();
 			} else {

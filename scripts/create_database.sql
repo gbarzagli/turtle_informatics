@@ -35,12 +35,6 @@ CREATE TABLE `contact` (
   CONSTRAINT `FKj0ag8jhilwi89v3crnwqu5i3w` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `telephone` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `number` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `contact_telephone` (
   `Contact_id` bigint(20) NOT NULL,
   `phoneNumbers_id` bigint(20) NOT NULL,
@@ -64,15 +58,22 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `product` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `imageUrl` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `price` double DEFAULT NULL,
-  `specification` varchar(255) DEFAULT NULL,
+  `specification` varchar(1000) DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKexqqeaksnmmku5py194ywp140` (`category_id`),
   CONSTRAINT `FKexqqeaksnmmku5py194ywp140` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `telephone` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `number` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
